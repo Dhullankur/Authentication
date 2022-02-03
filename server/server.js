@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const config = require('./config/config').get(process.env.NODE_ENV);
 const app = express();
 const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
@@ -11,7 +12,7 @@ const { authenticate } = require('./middleware/auth');
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-const mongoUrl = "mongodb+srv://ankur007:ankur007@cluster0.h0daq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+const mongoUrl = config.DATABASE;
 mongoose.connect(mongoUrl);
 
 
